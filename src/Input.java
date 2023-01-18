@@ -25,10 +25,12 @@ public class Input{
         /* Convert untuk k4 */
         k4 = stringToInt(input_k4);
 
+        /* Just Incase tidak boleh ada duplikat kartu yang sama
         if (k1 == -1000 | k2 == -1000 | k3 == -1000 | k4 == -1000){
             System.out.println("Masukkan salah! Ulangi pemasukan!");
             inputManual();
         }
+        */
     }
 
     public void inputAuto(){
@@ -40,10 +42,12 @@ public class Input{
         k3 = rand.nextInt(12) + 1;
         k4 = rand.nextInt(12) + 1;
 
+        /* Just incase tidak boleh ada duplikat kartu yang sama
         if(k1 == k2 | k1 == k3 | k1 == k4 | k2 == k3 | k2 == k4 | k3 == k4)
         {
             inputAuto();
         }
+        */
 
     }
 
