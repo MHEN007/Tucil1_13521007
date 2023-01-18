@@ -1,5 +1,6 @@
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Scanner;
 public class TwentyFour {
     Output out = new Output();
 
@@ -17,7 +18,9 @@ public class TwentyFour {
     
     /* METHODS */
     public void findTwentyFour(){
-        int[][] arrKartu = new int[24][4];
+        Scanner opt = new Scanner(System.in);
+
+        double[][] arrKartu = new double[24][4];
         int n = 0;
         for (int i = 0; i < 4; i++){
             for (int j = 0; j < 4; j++){
@@ -49,18 +52,40 @@ public class TwentyFour {
         Instant end = Instant.now();
 
         Duration dur = Duration.between(start,end);
-        out.writeToFile(found, dur.toMillis(), out.results);
 
-        System.out.println("NUMBERS OF 24: " + found);
-        System.out.println("FULL LIST LISTED IN result.txt");
-    
+        System.out.println("RESULTS: " + found + " combinations");
+        System.out.println("==================================");
+            
+            if (found == 0){
+                System.out.println("NO RESULTS");
+            }else{
+                for (int i = 0; i < out.results.size(); i++){
+                    System.out.println(out.results.get(i));
+                }
+            }
+
+            System.out.println("==================================");
+        System.out.println("DURATION " + dur.toMillis() + "ms");
+
+        System.out.println("Do you want to save the results? (Y/N)");
+
+        String option = opt.nextLine();
+
+        if(option.equals("Y")){
+            out.writeToFile(found, dur.toMillis(), out.results, arrAwal);
+            System.out.println("File is saved");
+        }else{
+            /* PASS */
+        }
+
+        opt.close();
     }
 
-    public void operations(int[] arr){
+    public void operations(double[] arr){
         /* Mencoba seluruh operasi */
         int n = 0;
-        int res = 0;
-        while (n < 100){
+        double res = 0;
+        while (n < 64){
             operationText = "";
             /* KASUS2 OPERASI TANPA KURUNG */
             if(n == 0)

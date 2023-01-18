@@ -8,20 +8,22 @@ public class Input{
     public void inputManual(){
         System.out.println("Masukkan Kartu Anda");
         /* Membaca input */
-        String input_text = sc.nextLine();
+        String input_k1 = sc.next();
+        String input_k2 = sc.next();
+        String input_k3 = sc.next();
+        String input_k4 = sc.next();
 
-        /* Membaca satu2 (traversal) */
-        /* Baca untuk k1 */
-        k1 = charToInt(input_text.charAt(0));
+        /* Convert untuk k1 */
+        k1 = stringToInt(input_k1);
 
-        /* Baca untuk k2 */
-        k2 = charToInt(input_text.charAt(2));
+        /* Convert untuk k2 */
+        k2 = stringToInt(input_k2);
 
-        /* Baca untuk k3 */
-        k3 = charToInt(input_text.charAt(4));
+        /* Convert untuk k3 */
+        k3 = stringToInt(input_k3);
 
-        /* Baca untuk k4 */
-        k4 = charToInt(input_text.charAt(6));
+        /* Convert untuk k4 */
+        k4 = stringToInt(input_k4);
 
         if (k1 == -1000 | k2 == -1000 | k3 == -1000 | k4 == -1000){
             System.out.println("Masukkan salah! Ulangi pemasukan!");
@@ -45,18 +47,34 @@ public class Input{
 
     }
 
-    public int charToInt(char c){
+    public int stringToInt(String c){
         int k;
-        if(c == 'A'){
+        if(c.equals("A")){
             k = 1;
-        } else if( c == 'K'){
-            k = 10;
-        } else if ( c == 'Q'){
+        } else if( c.equals("J")){
             k = 11;
-        } else if ( c == 'J'){
+        } else if ( c.equals("Q")){
             k = 12;
-        }else if (c >= '2' & c<='9'){
-            k = c - 48;
+        } else if ( c.equals("K")){
+            k = 13;
+        }else if (c.equals("2")){
+            k = 2;
+        }else if (c.equals("3")){
+            k = 3;
+        }else if (c.equals("4")){
+            k = 4;
+        }else if (c.equals("5")){
+            k = 5;
+        }else if (c.equals("6")){
+            k = 6;
+        }else if (c.equals("7")){
+            k = 7;
+        }else if (c.equals("8")){
+            k = 8;
+        }else if (c.equals("9")){
+            k = 9;
+        }else if (c.equals("10")){
+            k = 10;
         }else{
             /* FLAG ERROR */
             k = -1000;
@@ -66,7 +84,7 @@ public class Input{
 
     public static void main(String[] args){
         Input in = new Input();
-        in.inputAuto();
+        in.inputManual();
         System.out.println(in.k1);
         System.out.println(in.k2);
         System.out.println(in.k3);
