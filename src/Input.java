@@ -1,8 +1,7 @@
-package src;
 import java.util.Scanner;
 import java.util.Random;
 
-class Input{
+public class Input{
     int k1,k2,k3,k4;
     Scanner sc = new Scanner(System.in);
 
@@ -24,7 +23,7 @@ class Input{
         /* Baca untuk k4 */
         k4 = charToInt(input_text.charAt(6));
 
-        if (k1 == -1000 || k2 == -1000 || k3 == -1000 || k4 == -1000){
+        if (k1 == -1000 | k2 == -1000 | k3 == -1000 | k4 == -1000){
             System.out.println("Masukkan salah! Ulangi pemasukan!");
             inputManual();
         }
@@ -38,6 +37,11 @@ class Input{
         k2 = rand.nextInt(12) + 1;
         k3 = rand.nextInt(12) + 1;
         k4 = rand.nextInt(12) + 1;
+
+        if(k1 == k2 | k1 == k3 | k1 == k4 | k2 == k3 | k2 == k4 | k3 == k4)
+        {
+            inputAuto();
+        }
 
     }
 
