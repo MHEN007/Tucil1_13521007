@@ -1,0 +1,6 @@
+THE CARDS: A A A A
+Results that are 24: 0
+==================================
+NO RESULTS
+==================================
+Time: 29ms

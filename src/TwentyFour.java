@@ -107,13 +107,13 @@ public class TwentyFour {
         /* ((a operator b) operator c) operator d */
         for (int i = 0; i < 4; i++){
             double ab;
-            String abText = "((";
+            String abText = "(";
             ab = operate(arr[0], i, arr[1]);
             abText += makeStringFromOp(arr[0], i, arr[1]) + ")";
             for (int j = 0; j < 4 ; j++){
                 double c;
                 c = operate(ab, j, arr[2]);
-                String cText = concateStringOp(abText, j, arr[2]) + ")";
+                String cText = "(" + concateStringOp(abText, j, arr[2]) + ")";
                 for (int k = 0; k<4 ;k++){
                     if(operate(c, k, arr[3]) == 24){
                         operationText = concateStringOp(cText, k, arr[3]);
@@ -142,17 +142,18 @@ public class TwentyFour {
         }
 
         /* a operator (b operator c) operator d */
+        /* TODO: Remove redudancy */
         for (int i = 0; i < 4 ; i++){
             double bc;
             bc = operate(arr[1], i, arr[2]);
             String bcText = "(" + makeStringFromOp(arr[1], i, arr[2]) + ")";
             for (int j = 0; j < 4 ; j++){
                 for(int k = 0; k < 4 ;k++){
-                    if(j >= 2){
+                    if((j >= 2 & k < 2) | (j >= 2 & k >=2) | (j < 2 & k < 2)){
                         double abc;
                         abc = operate(arr[0], j, bc);
                         String abcText = concateOpString(arr[0], j, bcText);
-                        if(operate(abc, k, arr[3])==24){
+                        if(operate(abc, k, arr[3])==24 & j != 2){
                             operationText = concateStringOp(abcText, k, arr[3]);
                             found();
                         }
@@ -176,7 +177,7 @@ public class TwentyFour {
             String cdText = "(" + makeStringFromOp(arr[2], i, arr[3]) + ")";
             for (int j = 0; j < 4; j++){
                 for (int k = 0; k < 4; k++){
-                    if(j >= 2){
+                    if((j >= 2 & k < 2) | (j>=2 & k >= 2) | (j < 2 & k < 2)){
                         double ab;
                         ab = operate(arr[0], j, arr[1]);
                         String abText = makeStringFromOp(arr[0], j, arr[1]);
@@ -217,10 +218,10 @@ public class TwentyFour {
         /* a operator ((b operator c) operator d) */
         for (int i = 0; i < 4; i++){
             double bc = operate(arr[1], i, arr[2]);
-            String bcText = makeStringFromOp(arr[1], i, arr[2]);
+            String bcText = "(" + makeStringFromOp(arr[1], i, arr[2]) + ")";
             for (int j = 0; j < 4; j++){
                 double bcd = operate(bc, j, arr[3]);
-                String bcdText = concateStringOp(bcText, j, arr[3]);
+                String bcdText = "(" + concateStringOp(bcText, j, arr[3]) + ")";
                 for (int k = 0; k < 4 ; k++){
                     if(operate(arr[0], k,bcd) == 24){
                         operationText = concateOpString(arr[0], k, bcdText);
@@ -235,7 +236,7 @@ public class TwentyFour {
             for (int j = 0; j < 4; j++){
                 double temp;
                 String tempText;
-                if (i >= 2){
+                if ((i >= 2 & j < 2) | (i < 2 & j < 2) | (i >= 2 & j >= 2)){
                     temp = operate(arr[0], i, arr[1]);
                     temp = operate(temp, j, arr[2]);
                 }else{
@@ -256,19 +257,19 @@ public class TwentyFour {
         /* a operate (b operate c operate d) */
         for (int i =0; i < 4; i++){
             for (int j = 0; j < 4; j++){
-                double temp;
+                double bc, cd, bcd;
                 String tempText;
-                if (i >= 2){
-                    temp = operate(arr[1], i, arr[2]);
-                    temp = operate(temp, j, arr[3]);
+                if ((i >= 2 & j < 2) | (i < 2 & j < 2) | (i >= 2 & j >= 2)){
+                    bc = operate(arr[1], i, arr[2]);
+                    bcd = operate(bc, j, arr[3]);
                 }else{
-                    temp = operate(arr[2],j, arr[3]);
-                    temp = operate(arr[1], i, temp);            
+                    cd = operate(arr[2],j, arr[3]);
+                    bcd = operate(arr[1], i, cd);            
                 }
                 tempText = "(" + makeStringFromOp(arr[1],i, arr[2]);
                 tempText = concateStringOp(tempText, j, arr[3]) + ")";
                 for (int k = 0; k < 4; k++){
-                    if(operate(temp, k, arr[3]) == 24){
+                    if(operate(arr[0], k, bcd) == 24){
                         operationText = concateOpString(arr[0], k, tempText);
                         found();
                     }
