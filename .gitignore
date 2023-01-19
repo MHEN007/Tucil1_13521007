@@ -1,6 +1,7 @@
-.aux
-.log
-.tex
-.toc
-.synctex.gz
-.png
+*.aux
+*.log
+*.tex
+*.toc
+*.synctex.gz
+*.png
+*.out
