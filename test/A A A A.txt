@@ -1,6 +1,6 @@
 THE CARDS: A A A A
-Results that are 24: 0
+Results that are 24: 0 combinations
 ==================================
 NO RESULTS
 ==================================
-Time: 29ms
+Runtime: 35ms

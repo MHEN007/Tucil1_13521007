@@ -1,11 +1,10 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Output {
-    List<String> results = new ArrayList<>();
+    ArrayList<String> results = new ArrayList<>();
     String fileName;
 
     public void addResults(String math_exp){
@@ -28,7 +27,7 @@ public class Output {
         return ret;
     }
 
-    public void writeToFile(int founds, long time, List<String> results, int[] cards){
+    public void writeToFile(int founds, long time, ArrayList<String> results, int[] cards){
         Scanner fileRead = new Scanner(System.in);
         System.out.println("PLEASE ENTER YOUR FILENAME: ");
         fileName = fileRead.nextLine();
@@ -40,7 +39,7 @@ public class Output {
             outputFile.write("THE CARDS: ");
             outputFile.write(writeBackCards(cards[0]) + " " + writeBackCards(cards[1]) + " " + writeBackCards(cards[2]) + " " + writeBackCards(cards[3]) + "\n");
             
-            outputFile.write("Results that are 24: " + founds + "\n");
+            outputFile.write("Results that are 24: " + founds + " combinations\n");
             outputFile.write("==================================\n");
             
             if (founds == 0){
@@ -53,7 +52,7 @@ public class Output {
 
             outputFile.write("==================================\n");
 
-            outputFile.write("Time: " + time + "ms");
+            outputFile.write("Runtime: " + time + "ms");
 
             outputFile.close();
 

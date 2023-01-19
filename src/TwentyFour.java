@@ -65,7 +65,7 @@ public class TwentyFour {
             }
 
             System.out.println("==================================");
-        System.out.println("DURATION " + dur.toMillis() + "ms");
+        System.out.println("Runtime " + dur.toMillis() + "ms");
 
         System.out.println("Do you want to save the results? (Y/N)");
 
@@ -142,7 +142,6 @@ public class TwentyFour {
         }
 
         /* a operator (b operator c) operator d */
-        /* TODO: Remove redudancy */
         for (int i = 0; i < 4 ; i++){
             double bc;
             bc = operate(arr[1], i, arr[2]);
@@ -363,10 +362,16 @@ public class TwentyFour {
     }
 
     public void found(){
-        /* WRITE KE OUTPUT */
-        out.addResults(operationText);
+    /* WRITE KE OUTPUT 
+        * Periksa apakah elemen yang ditambahkan
+        * sudah ada atau belum pada array
+    */
+        if(!out.results.contains(operationText)){
+            /* Tambahkan ke array */
+            out.addResults(operationText);
 
-        /* Tambah Jumlah found */
-        found++;
+            /* Tambah Jumlah found */
+            found++;
+        }
     }
 }
