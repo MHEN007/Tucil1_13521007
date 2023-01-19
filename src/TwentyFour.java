@@ -56,15 +56,15 @@ public class TwentyFour {
         System.out.println("RESULTS: " + found + " combinations");
         System.out.println("==================================");
             
-            if (found == 0){
-                System.out.println("NO RESULTS");
-            }else{
-                for (int i = 0; i < out.results.size(); i++){
-                    System.out.println(out.results.get(i));
-                }
+        if (found == 0){
+            System.out.println("NO RESULTS");
+        }else{
+            for (int i = 0; i < out.results.size(); i++){
+                System.out.println(out.results.get(i));
             }
+        }
 
-            System.out.println("==================================");
+        System.out.println("==================================");
         System.out.println("Runtime " + dur.toMillis() + "ms");
 
         System.out.println("Do you want to save the results? (Y/N)");
