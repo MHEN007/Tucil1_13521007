@@ -82,359 +82,283 @@ public class TwentyFour {
     }
 
     public void operations(double[] arr){
-        /* Mencoba seluruh operasi */
-        int n = 0;
-        double res = 0;
-        while (n < 64){
-            operationText = "";
-            /* KASUS2 OPERASI TANPA KURUNG */
-            if(n == 0)
-            {
-                res = arr[0] + arr[1] + arr[2] + arr[3];
-                operationText += arr[0] + " + " + arr[1] + " + " + arr[2] + " + " + arr[3];
-            }
-            else if(n == 1)
-            {
-                res = arr[0] + arr[1] + arr[2] - arr[3];
-                operationText += arr[0] + " + " + arr[1] + " + " + arr[2] + " - " + arr[3];
-            }
-            else if(n == 2)
-            {
-                res = arr[0] + arr[1] + arr[2] * arr[3];
-                operationText += arr[0] + " + " + arr[1] + " + " + arr[2] + " * " + arr[3];
-            }
-            else if(n == 3)
-            {
-                res = arr[0] + arr[1] + arr[2] / arr[3];
-                operationText += arr[0] + " + " + arr[1] + " + " + arr[2] + " * " + arr[3];
-            }
-            else if(n == 4)
-            {
-                res = arr[0] + arr[1] - arr[2] + arr[3];
-                operationText += arr[0] + " + " + arr[1] + " - " + arr[2] + " + " + arr[3];
-            }
-            else if(n == 5)
-            {
-                res = arr[0] + arr[1] - arr[2] - arr[3];
-                operationText += arr[0] + " + " + arr[1] + " - " + arr[2] + " - " + arr[3];
-            }
-            else if(n == 6)
-            {
-                res = arr[0] + arr[1] - arr[2] * arr[3];
-                operationText += arr[0] + " + " + arr[1] + " - " + arr[2] + " * " + arr[3];
-            }
-            else if (n == 7)
-            {
-                res = arr[0] + arr[1] - arr[2] / arr[3];
-                operationText += arr[0] + " + " + arr[1] + " - " + arr[2] + " / " + arr[3];
-            }
-            else if (n == 8)
-            {
-                res = arr[0] + arr[1] / arr[2] + arr[3];
-                operationText += arr[0] + " + " + arr[1] + " / " + arr[2] + " + " + arr[3];
-            }
-            else if (n == 9)
-            {
-                res = arr[0] + arr[1] / arr[2] - arr[3];
-                operationText += arr[0] + " + " + arr[1] + " / " + arr[2] + " - " + arr[3];
-            }
-            else if (n == 10)
-            {
-                res = arr[0] + arr[1] / arr[2] / arr[3];
-                operationText += arr[0] + " + " + arr[1] + " / " + arr[2] + " / " + arr[3];
-            }
-            else if ( n == 11)
-            {
-                res = arr[0] + arr[1] / arr[2] * arr[3];
-                operationText += arr[0] + " + " + arr[1] + " / " + arr[2] + " * " + arr[3];
-            }
-            else if (n == 12)
-            {
-                res = arr[0] + arr[1] * arr[2] + arr[3];
-                operationText += arr[0] + " + " + arr[1] + " * " + arr[2] + " + " + arr[3];
-            }
-            else if (n == 13)
-            {
-                res = arr[0] + arr[1] * arr[2] - arr[3];
-                operationText += arr[0] + " + " + arr[1] + " * " + arr[2] + " - " + arr[3];
-            }
-            else if (n == 14)
-            {
-                res = arr[0] + arr[1] * arr[2] / arr[3];
-                operationText += arr[0] + " + " + arr[1] + " * " + arr[2] + " / " + arr[3];
-            }
-            else if (n == 15)
-            {
-                res = arr[0] + arr[1] * arr[2] * arr[3];
-                operationText += arr[0] + " + " + arr[1] + " * " + arr[2] + " * " + arr[3];
-            }
-            else if (n == 16)
-            {
-                res = arr[0] - arr[1] + arr[2] + arr[3];
-                operationText += arr[0] + " - " + arr[1] + " + " + arr[2] + " + " + arr[3];
-            }
-            else if(n == 17)
-            {
-                res = arr[0] - arr[1] + arr[2] - arr[3];
-                operationText += arr[0] + " - " + arr[1] + " + " + arr[2] + " - " + arr[3];
-            }
-            else if(n == 18)
-            {
-                res = arr[0] - arr[1] + arr[2] * arr[3];
-                operationText += arr[0] + " - " + arr[1] + " + " + arr[2] + " * " + arr[3];
-            }
-            else if(n == 19)
-            {
-                res = arr[0] - arr[1] + arr[2] / arr[3];
-                operationText += arr[0] + " - " + arr[1] + " + " + arr[2] + " / " + arr[3];
+        /* OPERASI UNTUK KURUNG */
 
+        /* (a operator b) operator (c operator d) */
+        for(int i = 0; i < 4; i++){
+            double ab, cd;
+            String abText = "(";
+            ab = operate(arr[0], i, arr[1]);
+            abText += makeStringFromOp(arr[0], i, arr[1]);
+            abText += ")";
+            for (int j = 0 ; j < 4; j++){
+                cd = operate(arr[2], j, arr[3]);
+                String cdText = "(";
+                cdText += makeStringFromOp(arr[2], j, arr[3]) + ")";
+                for (int k = 0; k < 4; k++){
+                    if(operate(ab, k, cd) == 24){
+                        operationText = concateOperationsString(abText, k, cdText);
+                        found();
+                    }
+                }
             }
-            else if(n == 20)
-            {
-                res = arr[0] - arr[1] - arr[2] + arr[3];
-                operationText += arr[0] + " - " + arr[1] + " - " + arr[2] + " + " + arr[3];
-            }
-            else if(n == 21)
-            {
-                res = arr[0] - arr[1] - arr[2] - arr[3];
-                operationText += arr[0] + " - " + arr[1] + " - " + arr[2] + " - " + arr[3];
-            }
-            else if(n == 22)
-            {
-                res = arr[0] - arr[1] - arr[2] * arr[3];
-                operationText += arr[0] + " - " + arr[1] + " - " + arr[2] + " * " + arr[3];
-
-            }
-            else if (n == 23)
-            {
-                res = arr[0] - arr[1] - arr[2] / arr[3];
-                operationText += arr[0] + " - " + arr[1] + " - " + arr[2] + " / " + arr[3];
-
-            }
-            else if (n == 24)
-            {
-                res = arr[0] - arr[1] / arr[2] + arr[3];
-                operationText += arr[0] + " - " + arr[1] + " / " + arr[2] + " + " + arr[3];
-            }
-            else if (n == 25)
-            {
-                res = arr[0] - arr[1] / arr[2] - arr[3];
-                operationText += arr[0] + " - " + arr[1] + " / " + arr[2] + " - " + arr[3];
-            }
-            else if (n == 26)
-            {
-                res = arr[0] - arr[1] / arr[2] / arr[3];
-                operationText += arr[0] + " - " + arr[1] + " / " + arr[2] + " / " + arr[3];
-            }
-            else if ( n == 27)
-            {
-                res = arr[0] - arr[1] / arr[2] * arr[3];
-                operationText += arr[0] + " - " + arr[1] + " / " + arr[2] + " * " + arr[3];
-            }
-            else if (n == 28)
-            {
-                res = arr[0] - arr[1] * arr[2] + arr[3];
-                operationText += arr[0] + " - " + arr[1] + " * " + arr[2] + " + " + arr[3];
-            }
-            else if (n == 29)
-            {
-                res = arr[0] - arr[1] * arr[2] - arr[3];
-                operationText += arr[0] + " - " + arr[1] + " * " + arr[2] + " - " + arr[3];
-            }
-            else if (n == 30)
-            {
-                res = arr[0] - arr[1] * arr[2] / arr[3];
-                operationText += arr[0] + " - " + arr[1] + " * " + arr[2] + " / " + arr[3];
-            }
-            else if (n == 31)
-            {
-                res = arr[0] - arr[1] * arr[2] * arr[3];
-                operationText += arr[0] + " - " + arr[1] + " * " + arr[2] + " * " + arr[3];
-            }
-            else if (n == 32)
-            {
-                res = arr[0] * arr[1] + arr[2] + arr[3];
-                operationText += arr[0] + " * " + arr[1] + " + " + arr[2] + " + " + arr[3];
-            }
-            else if(n == 33)
-            {
-                res = arr[0] * arr[1] + arr[2] - arr[3];
-                operationText += arr[0] + " * " + arr[1] + " + " + arr[2] + " - " + arr[3];
-            }
-            else if(n == 34)
-            {
-                res = arr[0] * arr[1] + arr[2] * arr[3];
-                operationText += arr[0] + " * " + arr[1] + " + " + arr[2] + " * " + arr[3];
-            }
-            else if(n == 35)
-            {
-                res = arr[0] * arr[1] + arr[2] / arr[3];
-                operationText += arr[0] + " * " + arr[1] + " + " + arr[2] + " / " + arr[3];
-            }
-            else if(n == 36)
-            {
-                res = arr[0] * arr[1] - arr[2] + arr[3];
-                operationText += arr[0] + " * " + arr[1] + " - " + arr[2] + " + " + arr[3];
-            }
-            else if(n == 37)
-            {
-                res = arr[0] * arr[1] - arr[2] - arr[3];
-                operationText += arr[0] + " * " + arr[1] + " - " + arr[2] + " - " + arr[3];
-            }
-            else if(n == 38)
-            {
-                res = arr[0] * arr[1] - arr[2] * arr[3];
-                operationText += arr[0] + " * " + arr[1] + " + " + arr[2] + " - " + arr[3];
-            }
-            else if (n == 39)
-            {
-                res = arr[0] * arr[1] - arr[2] / arr[3];
-                operationText += arr[0] + " * " + arr[1] + " + " + arr[2] + " / " + arr[3];
-            }
-            else if (n == 40)
-            {
-                res = arr[0] * arr[1] / arr[2] + arr[3];
-                operationText += arr[0] + " * " + arr[1] + " / " + arr[2] + " + " + arr[3];
-            }
-            else if (n == 41)
-            {
-                res = arr[0] * arr[1] / arr[2] - arr[3];
-                operationText += arr[0] + " * " + arr[1] + " / " + arr[2] + " - " + arr[3];
-            }
-            else if (n == 42)
-            {
-                res = arr[0] * arr[1] / arr[2] / arr[3];
-                operationText += arr[0] + " * " + arr[1] + " / " + arr[2] + " / " + arr[3];
-            }
-            else if ( n == 43)
-            {
-                res = arr[0] * arr[1] / arr[2] * arr[3];
-                operationText += arr[0] + " * " + arr[1] + " / " + arr[2] + " * " + arr[3];
-            }
-            else if (n == 44)
-            {
-                res = arr[0] * arr[1] * arr[2] + arr[3];
-                operationText += arr[0] + " * " + arr[1] + " * " + arr[2] + " + " + arr[3];
-            }
-            else if (n == 45)
-            {
-                res = arr[0] * arr[1] * arr[2] - arr[3];
-                operationText += arr[0] + " * " + arr[1] + " * " + arr[2] + " - " + arr[3];
-            }
-            else if (n == 46)
-            {
-                res = arr[0] * arr[1] * arr[2] / arr[3];
-                operationText += arr[0] + " * " + arr[1] + " * " + arr[2] + " / " + arr[3];
-            }
-            else if (n == 47)
-            {
-                res = arr[0] * arr[1] * arr[2] * arr[3];
-                operationText += arr[0] + " * " + arr[1] + " * " + arr[2] + " * " + arr[3];
-            }
-            else if (n == 48)
-            {
-                res = arr[0] / arr[1] + arr[2] + arr[3];
-                operationText += arr[0] + " / " + arr[1] + " + " + arr[2] + " + " + arr[3];
-            }
-            else if(n == 49)
-            {
-                res = arr[0] / arr[1] + arr[2] - arr[3];
-                operationText += arr[0] + " / " + arr[1] + " + " + arr[2] + " - " + arr[3];
-            }
-            else if(n == 50)
-            {
-                res = arr[0] / arr[1] + arr[2] * arr[3];
-                operationText += arr[0] + " / " + arr[1] + " + " + arr[2] + " * " + arr[3];
-            }
-            else if(n == 51)
-            {
-                res = arr[0] / arr[1] + arr[2] / arr[3];
-                operationText += arr[0] + " / " + arr[1] + " + " + arr[2] + " / " + arr[3];
-            }
-            else if(n == 52)
-            {
-                res = arr[0] / arr[1] - arr[2] + arr[3];
-                operationText += arr[0] + " / " + arr[1] + " - " + arr[2] + " + " + arr[3];
-            }
-            else if(n == 53)
-            {
-                res = arr[0] / arr[1] - arr[2] - arr[3];
-                operationText += arr[0] + " / " + arr[1] + " - " + arr[2] + " - " + arr[3];
-            }
-            else if(n == 54)
-            {
-                res = arr[0] / arr[1] - arr[2] * arr[3];
-                operationText += arr[0] + " * " + arr[1] + " + " + arr[2] + " / " + arr[3];
-            }
-            else if (n == 55)
-            {
-                res = arr[0] / arr[1] - arr[2] / arr[3];
-                operationText += arr[0] + " * " + arr[1] + " + " + arr[2] + " / " + arr[3];
-            }
-            else if (n == 56)
-            {
-                res = arr[0] / arr[1] / arr[2] + arr[3];
-                operationText += arr[0] + " / " + arr[1] + " / " + arr[2] + " + " + arr[3];
-            }
-            else if (n == 57)
-            {
-                res = arr[0] / arr[1] / arr[2] - arr[3];
-                operationText += arr[0] + " / " + arr[1] + " / " + arr[2] + " - " + arr[3];
-            }
-            else if (n == 58)
-            {
-                res = arr[0] / arr[1] / arr[2] / arr[3];
-                operationText += arr[0] + " / " + arr[1] + " / " + arr[2] + " / " + arr[3];
-            }
-            else if ( n == 59)
-            {
-                res = arr[0] / arr[1] / arr[2] * arr[3];
-                operationText += arr[0] + " / " + arr[1] + " / " + arr[2] + " * " + arr[3];
-            }
-            else if (n == 60)
-            {
-                res = arr[0] / arr[1] * arr[2] + arr[3];
-                operationText += arr[0] + " / " + arr[1] + " * " + arr[2] + " + " + arr[3];
-            }
-            else if (n == 61)
-            {
-                res = arr[0] / arr[1] * arr[2] - arr[3];
-                operationText += arr[0] + " / " + arr[1] + " * " + arr[2] + " - " + arr[3];
-            }
-            else if (n == 62)
-            {
-                res = arr[0] / arr[1] * arr[2] / arr[3];
-                operationText += arr[0] + " / " + arr[1] + " * " + arr[2] + " / " + arr[3];
-            }
-            else if (n == 63)
-            {
-                res = arr[0] / arr[1] * arr[2] * arr[3];
-                operationText += arr[0] + " / " + arr[1] + " * " + arr[2] + " * " + arr[3];
-            }
-
-            /* OPERASI DENGAN KURUNG */
-            
-            /* UNTUK RESULT = 24 */
-            if(res == 24){
-                found();
-            }
-
-            n++;
         }
+
+        /* ((a operator b) operator c) operator d */
+        for (int i = 0; i < 4; i++){
+            double ab;
+            String abText = "((";
+            ab = operate(arr[0], i, arr[1]);
+            abText += makeStringFromOp(arr[0], i, arr[1]) + ")";
+            for (int j = 0; j < 4 ; j++){
+                double c;
+                c = operate(ab, j, arr[2]);
+                String cText = concateStringOp(abText, j, arr[2]) + ")";
+                for (int k = 0; k<4 ;k++){
+                    if(operate(c, k, arr[3]) == 24){
+                        operationText = concateStringOp(cText, k, arr[3]);
+                        found();
+                    }
+                }
+            }
+        }
+
+        /* (a operator (b operator c)) operator d */
+        for (int i = 0; i < 4; i++){
+            double bc;
+            bc = operate(arr[1], i, arr[2]);
+            String bcText = "(" + makeStringFromOp(arr[1], i, arr[2]) + ")";
+            for (int j = 0; j < 4 ; j++){
+                double abc;
+                abc = operate(arr[0], j, bc);
+                String abcText = "(" + concateOpString(arr[0], j, bcText) +")";
+                for (int k = 0; k<4; k++){
+                    if(operate(abc, k, arr[3]) == 24){
+                        operationText = concateStringOp(abcText, k, arr[3]);
+                        found();
+                    }
+                }
+            }
+        }
+
+        /* a operator (b operator c) operator d */
+        for (int i = 0; i < 4 ; i++){
+            double bc;
+            bc = operate(arr[1], i, arr[2]);
+            String bcText = "(" + makeStringFromOp(arr[1], i, arr[2]) + ")";
+            for (int j = 0; j < 4 ; j++){
+                for(int k = 0; k < 4 ;k++){
+                    if(j >= 2){
+                        double abc;
+                        abc = operate(arr[0], j, bc);
+                        String abcText = concateOpString(arr[0], j, bcText);
+                        if(operate(abc, k, arr[3])==24){
+                            operationText = concateStringOp(abcText, k, arr[3]);
+                            found();
+                        }
+                    }else{
+                        double bcd;
+                        bcd = operate(bc, k, arr[3]);
+                        String bcdText = concateStringOp(bcText, k, arr[3]);
+                        if(operate(arr[0], j, bcd)==24){
+                            operationText = concateOpString(arr[0], j, bcdText);
+                            found();
+                        }
+                    }
+                }
+            }
+        }
+
+        /* a operator b operator (c operator d) */
+        for (int i = 0; i < 4; i++){
+            double cd;
+            cd = operate(arr[2], i, arr[3]);
+            String cdText = "(" + makeStringFromOp(arr[2], i, arr[3]) + ")";
+            for (int j = 0; j < 4; j++){
+                for (int k = 0; k < 4; k++){
+                    if(j >= 2){
+                        double ab;
+                        ab = operate(arr[0], j, arr[1]);
+                        String abText = makeStringFromOp(arr[0], j, arr[1]);
+                        if(operate(ab, k, cd) == 24){
+                            operationText = concateOperationsString(abText, k, cdText);
+                            found();
+                        }
+                    }else{
+                        double bcd;
+                        bcd = operate(arr[1], k,cd);
+                        String bcdText = concateOpString(arr[1], k, cdText);
+                        if(operate(arr[0], j, bcd) == 24){
+                            operationText = concateOpString(arr[0], j, bcdText);
+                            found();
+                        }
+                    }
+                }
+            }
+        }
+
+        /* a operator (b operator (c operator d)) */
+        for (int i = 0; i < 4; i++){
+            double cd;
+            cd = operate(arr[2], i, arr[3]);
+            String cdText = "("+makeStringFromOp(arr[2], i, arr[3])+")";
+            for (int j = 0; j < 4; j++){
+                double bcd = operate(arr[1], j, cd);
+                String bcdText = "(" + concateOpString(arr[1], j, cdText) + ")";
+                for (int k = 0; k < 4; k++){
+                    if(operate(arr[0], k, bcd) == 24){
+                        operationText = concateOpString(arr[0], k, bcdText);
+                        found();
+                    }
+                }
+            }
+        }
+
+        /* a operator ((b operator c) operator d) */
+        for (int i = 0; i < 4; i++){
+            double bc = operate(arr[1], i, arr[2]);
+            String bcText = makeStringFromOp(arr[1], i, arr[2]);
+            for (int j = 0; j < 4; j++){
+                double bcd = operate(bc, j, arr[3]);
+                String bcdText = concateStringOp(bcText, j, arr[3]);
+                for (int k = 0; k < 4 ; k++){
+                    if(operate(arr[0], k,bcd) == 24){
+                        operationText = concateOpString(arr[0], k, bcdText);
+                        found();
+                    }
+                }
+            }
+        }
+
+        /* (a operate b operate c) operate d */
+        for (int i =0; i < 4; i++){
+            for (int j = 0; j < 4; j++){
+                double temp;
+                String tempText;
+                if (i >= 2){
+                    temp = operate(arr[0], i, arr[1]);
+                    temp = operate(temp, j, arr[2]);
+                }else{
+                    temp = operate(arr[1],j, arr[2]);
+                    temp = operate(arr[0], i, temp);
+                }
+                tempText = "(" + makeStringFromOp(arr[0],i, arr[1]);
+                tempText = concateStringOp(tempText, j, arr[2]) + ")";
+                for (int k = 0; k < 4; k++){
+                    if(operate(temp, k, arr[3]) == 24){
+                        operationText = concateStringOp(tempText, k, arr[3]);
+                        found();
+                    }
+                }
+            }
+        }
+
+        /* a operate (b operate c operate d) */
+        for (int i =0; i < 4; i++){
+            for (int j = 0; j < 4; j++){
+                double temp;
+                String tempText;
+                if (i >= 2){
+                    temp = operate(arr[1], i, arr[2]);
+                    temp = operate(temp, j, arr[3]);
+                }else{
+                    temp = operate(arr[2],j, arr[3]);
+                    temp = operate(arr[1], i, temp);            
+                }
+                tempText = "(" + makeStringFromOp(arr[1],i, arr[2]);
+                tempText = concateStringOp(tempText, j, arr[3]) + ")";
+                for (int k = 0; k < 4; k++){
+                    if(operate(temp, k, arr[3]) == 24){
+                        operationText = concateOpString(arr[0], k, tempText);
+                        found();
+                    }
+                }
+            }
+        }
+
+
     }
 
-    public int operate (int a, char op, int b){
-        int ret = 0;
-        if (op == '+'){
+    public double operate (double a, int op, double b){
+        double ret = 0;
+        if (op == 0){
             ret = a + b;
-        } else if (op == '-'){
+        } else if (op == 1){
             ret = a - b;
-        } else if (op == '*'){
+        } else if (op == 2){
             ret = a * b;
-        } else if (op == '/'){
+        } else if (op == 3){
             ret = a / b;
         }
         return ret;
+    }
+
+    public String concateOperationsString(String a, int op, String b){
+        String text;
+        text = "";
+        text += a;
+        if(op == 0){
+            text += " + ";
+        }else if(op == 1){
+            text += " - ";
+        }else if(op == 2){
+            text += " * ";
+        }else if(op == 3){
+            text += " / ";
+        }
+        text+=b;
+        return text;
+    }
+
+    public String concateStringOp(String a, int op, double b){
+        String text;
+        text = "";
+        text += a;
+        if(op == 0){
+            text += " + ";
+        }else if(op == 1){
+            text += " - ";
+        }else if(op == 2){
+            text += " * ";
+        }else if(op == 3){
+            text += " / ";
+        }
+        text+=b;
+        return text;
+    }
+
+    public String concateOpString(double a, int op, String b){
+        String text;
+        text = "";
+        text += a;
+        if(op == 0){
+            text += " + ";
+        }else if(op == 1){
+            text += " - ";
+        }else if(op == 2){
+            text += " * ";
+        }else if(op == 3){
+            text += " / ";
+        }
+        text+=b;
+        return text;
+    }
+
+    public String makeStringFromOp(double a, int op, double b){
+        String text;
+        text = "";
+        text += a;
+        if(op == 0){
+            text += " + ";
+        }else if(op == 1){
+            text += " - ";
+        }else if(op == 2){
+            text += " * ";
+        }else if(op == 3){
+            text += " / ";
+        }
+        text+=b;
+        return text;
     }
 
     public void found(){
