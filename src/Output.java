@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Output {
     List<String> results = new ArrayList<>();
+    String fileName;
 
     public void addResults(String math_exp){
         results.add(math_exp);
@@ -30,7 +31,7 @@ public class Output {
     public void writeToFile(int founds, long time, List<String> results, int[] cards){
         Scanner fileRead = new Scanner(System.in);
         System.out.println("PLEASE ENTER YOUR FILENAME: ");
-        String fileName = fileRead.nextLine();
+        fileName = fileRead.nextLine();
         fileName += ".txt";
 
         try{

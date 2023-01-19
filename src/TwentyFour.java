@@ -73,7 +73,7 @@ public class TwentyFour {
 
         if(option.equals("Y")){
             out.writeToFile(found, dur.toMillis(), out.results, arrAwal);
-            System.out.println("File is saved");
+            System.out.println("File is saved with filename " + out.fileName);
         }else{
             /* PASS */
         }
@@ -82,7 +82,7 @@ public class TwentyFour {
     }
 
     public void operations(double[] arr){
-        /* OPERASI UNTUK KURUNG */
+        /* OPERASI DENGAN TANDA KURUNG */
 
         /* (a operator b) operator (c operator d) */
         for(int i = 0; i < 4; i++){
