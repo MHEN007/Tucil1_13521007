@@ -35,10 +35,10 @@ public class Input{
         Random rand = new Random();
         
         /* Generate Random */
-        k1 = rand.nextInt(12) + 1;
-        k2 = rand.nextInt(12) + 1;
-        k3 = rand.nextInt(12) + 1;
-        k4 = rand.nextInt(12) + 1;
+        k1 = rand.nextInt(13) + 1;
+        k2 = rand.nextInt(13) + 1;
+        k3 = rand.nextInt(13) + 1;
+        k4 = rand.nextInt(13) + 1;
 
         /* Just incase tidak boleh ada duplikat kartu yang sama
         if(k1 == k2 | k1 == k3 | k1 == k4 | k2 == k3 | k2 == k4 | k3 == k4)
