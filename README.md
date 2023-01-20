@@ -21,4 +21,6 @@ Ada dua opsi untuk mengambil kartu yaitu secara manual atau secara acak. Untuk s
 4. A untuk As
 5. Angka 2 - 10 untuk kartu 2 s.d. 10
 
+Input untuk kartu King, Queen, Joker, dan As adalah huruf kapital (case-sensitive).
+
 Setelah dimasukkan program akan mencari semua kemungkinan. Hasil ditampilkan di layar dan dapat disimpan ke file text. Perlu dicatat bahwa hasil operasi yang serupa seperti (1 * 2) * 3 + 4 dan 1 * (2 * 3) + 4 keduanya akan ditulis.

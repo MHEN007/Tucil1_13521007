@@ -1,6 +1,5 @@
-import java.time.Duration;
-import java.time.Instant;
 import java.util.Scanner;
+
 public class TwentyFour {
     Output out = new Output();
 
@@ -43,15 +42,15 @@ public class TwentyFour {
             }
         }
 
-        Instant start = Instant.now();
+        long start = System.currentTimeMillis();
         
         for (int i = 0; i < 24; i++){
             operations(arrKartu[i]);
         }
 
-        Instant end = Instant.now();
+        long end = System.currentTimeMillis();
 
-        Duration dur = Duration.between(start,end);
+        long dur = end-start;
 
         System.out.println("RESULTS: " + found + " combinations");
         System.out.println("==================================");
@@ -65,17 +64,24 @@ public class TwentyFour {
         }
 
         System.out.println("==================================");
-        System.out.println("Runtime " + dur.toMillis() + "ms");
+        System.out.println("Runtime " + dur + "ms");
 
-        System.out.println("Do you want to save the results? (Y/N)");
+        boolean option_bool = false;
 
-        String option = opt.nextLine();
+        while(!option_bool){
+            System.out.println("Do you want to save the results? (Y/N)");
 
-        if(option.equals("Y")){
-            out.writeToFile(found, dur.toMillis(), out.results, arrAwal);
-            System.out.println("File is saved with filename " + out.fileName);
-        }else{
-            /* PASS */
+            String option = opt.nextLine();
+
+            if(option.equals("Y") | option.equals("y")){
+                option_bool = true;
+                out.writeToFile(found, dur, out.results, arrAwal);
+                System.out.println("File is saved with filename " + out.fileName);
+            }else if(option.equals("N") | option.equals("n")){
+                option_bool = true;
+            }else{
+                System.out.println("Masukan salah! Silakan ulangi.");
+            }
         }
 
         opt.close();
