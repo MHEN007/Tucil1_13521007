@@ -4,10 +4,10 @@ Matthew Mahendra (13521007)
 ## Deskripsi Singkat 
 Permainan 24 adalah permainan dimana disediakan kartu Jack, Queen, As, King, 2 s.d. 10. Diambil 4 kartu secara acak. Dicari cara agar dapat mencapai angka 24 dari keempat kartu acak tersebut menggunakan operasi matematika seperti penjumlahan, pengurangan, perkalian, pembagian, dan sifat komutatif.
 
-Untuk mencari seluruh solusi tersebut, dapat digunakan algoritma <i>Brute Force</i> untuk mencari hasil-hasil yang diinginkan. Program ini dibuat menggunakan bahasa Java.
+Untuk mencari seluruh solusi tersebut, dapat digunakan algoritma <i>Brute Force</i> untuk mencari hasil-hasil yang diinginkan. Program ini dibuat menggunakan bahasa Java dengan versi 19.0.1 yang dikeluarkan pada 18 Oktober 2022.
 
 ## Setup Program
-Program dijalankan pada `Main.java`. Langkah-langkahnya sebagai berikut
+Untuk menjalankan program ini, Anda wajib melakukan instalasi Java Development Kit (JDK) dan juga mengunduh repository ini. Program dijalankan pada `Main.java`. Langkah-langkahnya sebagai berikut,
 1. Change Directory ke `src`
 2. Ketikkan `javac -d ../bin *.java`
 3. Ketikkan `java -cp ../bin Main`
